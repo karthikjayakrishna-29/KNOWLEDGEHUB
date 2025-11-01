@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 const WhoToFollow = () => {
+  const navigate = useNavigate();
+
   const suggestions = [
     {
       id: 1,
@@ -24,9 +27,9 @@ const WhoToFollow = () => {
     },
   ];
 
-  const [followedUsers, setFollowedUsers] = useState(new Set());
+  const [followedUsers, setFollowedUsers] = useState<Set<number>>(new Set());
 
-  const toggleFollow = (userId) => {
+  const toggleFollow = (userId: number) => {
     setFollowedUsers((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(userId)) {
@@ -38,6 +41,10 @@ const WhoToFollow = () => {
     });
   };
 
+  const handleProfileClick = (userId: number) => {
+    navigate(`/profile/${userId}`);
+  };
+
   return (
     <div className="bg-card rounded-xl shadow-sm border border-border p-4">
       <h3 className="font-semibold text-foreground mb-4">Who to Follow</h3>
@@ -46,7 +53,10 @@ const WhoToFollow = () => {
           const isFollowing = followedUsers.has(user.id);
           return (
             <div key={user.id} className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
+              <div
+                className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => handleProfileClick(user.id)}
+              >
                 <Avatar className="w-10 h-10">
                   <AvatarImage src="/placeholder.svg" />
                   <AvatarFallback className="bg-accent/10 text-accent">
@@ -54,7 +64,7 @@ const WhoToFollow = () => {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-medium text-sm text-foreground">
+                  <p className="font-medium text-sm text-foreground hover:underline">
                     {user.name}
                   </p>
                   <p className="text-xs text-muted-foreground">{user.info}</p>
@@ -62,8 +72,11 @@ const WhoToFollow = () => {
               </div>
               <Button
                 size="sm"
-                onClick={() => toggleFollow(user.id)}
-                className={`rounded-full px-4 h-8 ${
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFollow(user.id);
+                }}
+                className={`rounded-full px-4 h-8 transition-all ${
                   isFollowing
                     ? "bg-secondary/20 hover:bg-secondary/30 text-foreground border border-border"
                     : "bg-secondary hover:bg-secondary/90 text-secondary-foreground"

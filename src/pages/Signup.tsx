@@ -13,7 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -24,21 +23,17 @@ const Signup = () => {
     department: "",
     password: "",
   });
-
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
-
     // Validate all required fields
     if (!formData.fullName || !formData.email || !formData.password) {
       toast.error("Please fill in all required fields!");
       return;
     }
-
     if (!formData.collegeName || !formData.year || !formData.department) {
       toast.error("Please complete your profile information!");
       return;
     }
-
     // Store user data
     localStorage.setItem("isAuthenticated", "true");
     localStorage.setItem("userData", JSON.stringify(formData));
@@ -46,7 +41,6 @@ const Signup = () => {
     toast.success("Account created successfully!");
     navigate("/dashboard");
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2557] via-[#1a3a6b] to-[#0f2557] flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
@@ -59,7 +53,6 @@ const Signup = () => {
             Join the learning community
           </p>
         </div>
-
         <form onSubmit={handleSignup} className="space-y-4">
           <div className="space-y-2">
             <Label
@@ -80,7 +73,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="space-y-2">
             <Label
               htmlFor="email"
@@ -100,7 +92,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="space-y-2">
             <Label
               htmlFor="collegeName"
@@ -121,7 +112,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-gray-900">Year</Label>
@@ -144,7 +134,6 @@ const Signup = () => {
                 </SelectContent>
               </Select>
             </div>
-
             <div className="space-y-2">
               <Label className="text-sm font-medium text-gray-900">
                 Department
@@ -189,7 +178,6 @@ const Signup = () => {
                       B.Tech - CSE (Blockchain)
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Electronics & Communication */}
                   <SelectGroup>
                     <SelectLabel>Electronics & Communication</SelectLabel>
@@ -213,7 +201,6 @@ const Signup = () => {
                     </SelectItem>
                     <SelectItem value="avionics">B.Tech - Avionics</SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Electrical */}
                   <SelectGroup>
                     <SelectLabel>Electrical Engineering</SelectLabel>
@@ -230,7 +217,6 @@ const Signup = () => {
                       B.Tech - EE (Renewable Energy)
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Mechanical */}
                   <SelectGroup>
                     <SelectLabel>Mechanical Engineering</SelectLabel>
@@ -262,7 +248,6 @@ const Signup = () => {
                       B.Tech - Robotics and Automation
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Civil */}
                   <SelectGroup>
                     <SelectLabel>Civil Engineering</SelectLabel>
@@ -279,7 +264,6 @@ const Signup = () => {
                       B.E./B.Tech - Environmental Engineering
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Chemical & Related */}
                   <SelectGroup>
                     <SelectLabel>Chemical & Process</SelectLabel>
@@ -296,7 +280,6 @@ const Signup = () => {
                       B.Tech - Food Technology
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Biotechnology */}
                   <SelectGroup>
                     <SelectLabel>Biotechnology</SelectLabel>
@@ -313,7 +296,6 @@ const Signup = () => {
                       B.Tech - Genetic Engineering
                     </SelectItem>
                   </SelectGroup>
-
                   {/* B.E. / B.Tech - Other Engineering */}
                   <SelectGroup>
                     <SelectLabel>Other Engineering</SelectLabel>
@@ -481,7 +463,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <Button
             type="submit"
             className="w-full h-12 bg-[#0f2557] hover:bg-[#0a1a3d] text-white rounded-xl font-medium"
@@ -503,5 +484,4 @@ const Signup = () => {
     </div>
   );
 };
-
 export default Signup;

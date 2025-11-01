@@ -15,6 +15,9 @@ import StudyMaterial from "./pages/StudyMaterial";
 import Internships from "./pages/Internships";
 import Workshops from "./pages/Workshops";
 import OtherContent from "./pages/OtherContent";
+import Settings from "./pages/settings";
+import UserProfile from "./pages/Userprofile";
+import TrendingTopic from "./pages/TrendingTopic";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,16 +37,102 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/create" element={<ProtectedRoute><Create /></ProtectedRoute>} />
-          <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/explore" element={<ProtectedRoute><Explore /></ProtectedRoute>} />
-          <Route path="/study-material" element={<ProtectedRoute><StudyMaterial /></ProtectedRoute>} />
-          <Route path="/internships" element={<ProtectedRoute><Internships /></ProtectedRoute>} />
-          <Route path="/workshops" element={<ProtectedRoute><Workshops /></ProtectedRoute>} />
-          <Route path="/other" element={<ProtectedRoute><OtherContent /></ProtectedRoute>} />
-          <Route path="/settings" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <Create />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <ProtectedRoute>
+                <Events />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:userId"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/explore"
+            element={
+              <ProtectedRoute>
+                <Explore />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/study-material"
+            element={
+              <ProtectedRoute>
+                <StudyMaterial />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/internships"
+            element={
+              <ProtectedRoute>
+                <Internships />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/workshops"
+            element={
+              <ProtectedRoute>
+                <Workshops />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/other"
+            element={
+              <ProtectedRoute>
+                <OtherContent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/trending"
+            element={
+              <ProtectedRoute>
+                <TrendingTopic />
+              </ProtectedRoute>
+            }
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

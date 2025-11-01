@@ -12,21 +12,13 @@ const TrendingTopics = () => {
     "#HistoryRevision",
   ];
 
-  const handleViewAll = () => {
-    navigate("/trending");
-  };
-
-  const handleTopicClick = (topic: string) => {
-    navigate(`/trending?topic=${encodeURIComponent(topic)}`);
-  };
-
   return (
     <div className="bg-card rounded-xl shadow-sm border border-border p-4 mb-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-foreground">Trending Topics</h3>
         <button 
-          onClick={handleViewAll}
-          className="text-sm text-primary hover:underline font-medium transition-colors"
+          onClick={() => navigate("/trending")}
+          className="text-sm text-primary hover:underline"
         >
           See all
         </button>
@@ -36,8 +28,8 @@ const TrendingTopics = () => {
           <Badge
             key={topic}
             variant="secondary"
-            onClick={() => handleTopicClick(topic)}
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/80 cursor-pointer px-3 py-1.5 rounded-full transition-all hover:scale-105"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/80 cursor-pointer px-3 py-1.5 rounded-full"
+            onClick={() => navigate("/trending")}
           >
             {topic}
           </Badge>
